@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "me.iangry.antinetherroof"
-version = "1.2.5"
+version = "1.2.5-Folia"
 
 repositories {
     maven("https://repo.papermc.io/repository/maven-public/")
