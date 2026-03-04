@@ -7,60 +7,34 @@ import org.gradle.process.ExecOperations
 import java.io.ByteArrayOutputStream
 
 plugins {
-    id("java-library")
-    id("io.freefair.lombok") version "9.2.0"
-    id("com.gradleup.shadow") version "9.3.1"
+    id("java")
 }
 
-// TODO: Configure
-group = "dev.lumas.decompile_patcher_template"
-version = "0.0.0"
+group = "me.iangry.antinetherroof"
+version = "1.2.5"
 
 repositories {
-    // TODO: Configure
+    maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://repo.helpch.at/releases")
 }
 
 dependencies {
-    // TODO: Configure
+    compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+    compileOnly("me.clip:placeholderapi:2.11.6")
 }
 
-// TODO: Configure
-tasks {
-    shadowJar {
-        archiveClassifier.set("")
-        archiveBaseName.set(rootProject.name)
-
-        manifest {
-            attributes(
-                "Implementation-Title" to rootProject.name,
-                "Implementation-Version" to project.version,
-            )
-        }
-    }
-
-    build {
-        dependsOn(shadowJar)
-    }
-
-    jar {
-        enabled = false
-    }
-}
-
-// TODO: Configure
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
-// TODO: Configure
 val decompileConfig = DecompileConfig(
-    inputJar = "sources/Decompile-Patcher-Template.jar",
+    inputJar = "sources/AntiNetherRoof.jar",
     packageMappings = mapOf(
-        "dev/lumas/decompile_patcher_template" to "."
+        "me/iangry/antinetherroof" to "."
     ),
     resourceMappings = mapOf(
         "plugin.yml" to ".",
-        //"config.yml" to "."
+        "config.yml" to "."
     )
 )
 

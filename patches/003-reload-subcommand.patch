@@ -1,0 +1,17 @@
+diff --git a/me/iangry/antinetherroof/Main.java b/me/iangry/antinetherroof/Main.java
+index 27d6a45..f705fa5 100644
+--- a/me/iangry/antinetherroof/Main.java
++++ b/me/iangry/antinetherroof/Main.java
+@@ -60,6 +60,12 @@ public class Main extends JavaPlugin implements Listener {
+          sender.sendMessage("§aVersion: §7" + this.getDescription().getVersion());
+          sender.sendMessage("§aDescription: §7Block access to the nether roof (above bedrock)");
+       }
++      // Luma start - reload subcommand
++      else {
++         this.reloadConfig();
++         sender.sendMessage("§a[§2AntiNetherRoof§a] §7Configuration reloaded.");
++      }
++      // Luma end - reload subcommand
+ 
+       return true;
+    }

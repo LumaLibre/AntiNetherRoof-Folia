@@ -1,0 +1,79 @@
+diff --git a/me/iangry/antinetherroof/Main.java b/me/iangry/antinetherroof/Main.java
+index 4009270..27d6a45 100644
+--- a/me/iangry/antinetherroof/Main.java
++++ b/me/iangry/antinetherroof/Main.java
+@@ -77,10 +77,10 @@ public class Main extends JavaPlugin implements Listener {
+    public void onMove2(PlayerMoveEvent e) {
+       Location loc = e.getPlayer().getLocation();
+       Player p = e.getPlayer();
+-      if (!p.hasPermission("antinetherroof.bypass")) {
++      if (!p.hasPermission("antinetherroof.bypass") && loc.getWorld().getEnvironment() == Environment.NETHER ) { // Luma - Optimize code
+          if (this.checkWorld(p)) {
+             int height = this.getConfig().getInt("nether-roof-height");
+-            if (loc.getWorld().getEnvironment() == Environment.NETHER && loc.getY() >= height) {
++            if (loc.getY() >= height) {
+                for (String messages : this.getConfig().getStringList("not-allowed")) {
+                   if (this.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+                      messages = PlaceholderAPI.setPlaceholders(p.getPlayer(), messages);
+@@ -151,9 +151,9 @@ public class Main extends JavaPlugin implements Listener {
+    public void onBlockPlace(BlockPlaceEvent e) {
+       Location loc = e.getBlock().getLocation();
+       Player p = e.getPlayer();
+-      if (!p.hasPermission("antinetherroof.bypass")) {
++      if (!p.hasPermission("antinetherroof.bypass") && loc.getWorld().getEnvironment() == Environment.NETHER) { // Luma - Optimizations
+          int height = this.getConfig().getInt("nether-roof-height");
+-         if (loc.getWorld().getEnvironment() == Environment.NETHER && loc.getY() >= height) {
++         if (loc.getY() >= height) {
+             e.setCancelled(true);
+          }
+       }
+@@ -163,9 +163,9 @@ public class Main extends JavaPlugin implements Listener {
+    public void onBlockBreak(BlockBreakEvent e) {
+       Location loc = e.getBlock().getLocation();
+       Player p = e.getPlayer();
+-      if (!p.hasPermission("antinetherroof.bypass")) {
++      if (!p.hasPermission("antinetherroof.bypass") && loc.getWorld().getEnvironment() == Environment.NETHER) { // Luma - Optimizations
+          int height = this.getConfig().getInt("nether-roof-height");
+-         if (loc.getWorld().getEnvironment() == Environment.NETHER && loc.getY() >= height) {
++         if (loc.getY() >= height) {
+             e.setCancelled(true);
+          }
+       }
+@@ -175,10 +175,10 @@ public class Main extends JavaPlugin implements Listener {
+    public void onConsume(PlayerItemConsumeEvent e) {
+       Location loc = e.getPlayer().getLocation();
+       Player p = e.getPlayer();
+-      if (!p.hasPermission("antinetherroof.bypass")) {
++      if (!p.hasPermission("antinetherroof.bypass") && loc.getWorld().getEnvironment() == Environment.NETHER) { // Luma - Optimizations
+          if (!this.getConfig().getBoolean("freeze-on-entry")) {
+             int height = this.getConfig().getInt("nether-roof-height");
+-            if (loc.getWorld().getEnvironment() == Environment.NETHER && loc.getY() >= height) {
++            if (loc.getY() >= height) {
+                e.setCancelled(true);
+             }
+          }
+@@ -201,9 +201,9 @@ public class Main extends JavaPlugin implements Listener {
+    public void onMoveEventFreeze(PlayerMoveEvent e) {
+       Location loc = e.getPlayer().getLocation();
+       Player p = e.getPlayer();
+-      if (!p.hasPermission("antinetherroof.bypass")) {
++      if (!p.hasPermission("antinetherroof.bypass") && loc.getWorld().getEnvironment() == Environment.NETHER) { // Luma - Optimizations
+          int height = this.getConfig().getInt("nether-roof-height");
+-         if (loc.getWorld().getEnvironment() == Environment.NETHER && loc.getY() >= height && this.getConfig().getBoolean("freeze-on-entry")) {
++         if (loc.getY() >= height && this.getConfig().getBoolean("freeze-on-entry")) {
+             e.setCancelled(true);
+          }
+       }
+@@ -215,10 +215,10 @@ public class Main extends JavaPlugin implements Listener {
+       if (entity instanceof Player) {
+          Player p = (Player)e.getEntity().getShooter();
+          Location loc = p.getPlayer().getLocation();
+-         if (!p.hasPermission("antinetherroof.bypass")) {
++         if (!p.hasPermission("antinetherroof.bypass") && loc.getWorld().getEnvironment() == Environment.NETHER) { // Luma - Optimizations
+             if (!this.getConfig().getBoolean("freeze-on-entry")) {
+                int height = this.getConfig().getInt("nether-roof-height");
+-               if (loc.getWorld().getEnvironment() == Environment.NETHER && loc.getY() >= height) {
++               if (loc.getY() >= height) {
+                   e.setCancelled(true);
+                }
+             }

@@ -1,0 +1,40 @@
+diff --git a/__resources__/plugin.yml b/__resources__/plugin.yml
+index 14f94d3..5cd36a8 100644
+--- a/__resources__/plugin.yml
++++ b/__resources__/plugin.yml
+@@ -6,7 +6,7 @@ api-version: 1.13
+ description: Block the nether roof
+ softdepend: [PlaceholderAPI]
+ commands:
+-  AntiNetherRoof:
++  antinetherroof: # Luma - Useless code
+     description: Help Command
+     usage: /<command> <args>
+-    aliases: [netherroof, antiroof, netherroof, nethertop, lichantinetherroof]
+\ No newline at end of file
++    #aliases: [netherroof, antiroof, netherroof, nethertop, lichantinetherroof] # Luma - Useless code
+\ No newline at end of file
+diff --git a/me/iangry/antinetherroof/Main.java b/me/iangry/antinetherroof/Main.java
+index 8cd40c8..4009270 100644
+--- a/me/iangry/antinetherroof/Main.java
++++ b/me/iangry/antinetherroof/Main.java
+@@ -31,7 +31,7 @@ import org.bukkit.potion.PotionEffect;
+ import org.bukkit.potion.PotionEffectType;
+ 
+ public class Main extends JavaPlugin implements Listener {
+-   public static Main plugin;
++   //public static Main plugin; // Luma - Useless code
+ 
+    public void onDisable() {
+       ConsoleCommandSender clogger = this.getServer().getConsoleSender();
+@@ -51,8 +51,8 @@ public class Main extends JavaPlugin implements Listener {
+    }
+ 
+    public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
+-      if (alias.equalsIgnoreCase("AntiNetherRoof")) {
+-      }
++//      if (alias.equalsIgnoreCase("AntiNetherRoof")) { // Luma - Useless code
++//      }
+ 
+       if (args.length == 0) {
+          sender.sendMessage("§2[§aAntiNetherRoof§2]");

@@ -1,0 +1,50 @@
+diff --git a/__resources__/plugin.yml b/__resources__/plugin.yml
+index 5cd36a8..4609d1d 100644
+--- a/__resources__/plugin.yml
++++ b/__resources__/plugin.yml
+@@ -5,6 +5,7 @@ author: iAngry
+ api-version: 1.13
+ description: Block the nether roof
+ softdepend: [PlaceholderAPI]
++folia-support: true # Luma - Folia support
+ commands:
+   antinetherroof: # Luma - Useless code
+     description: Help Command
+diff --git a/me/iangry/antinetherroof/Main.java b/me/iangry/antinetherroof/Main.java
+index f705fa5..2721d33 100644
+--- a/me/iangry/antinetherroof/Main.java
++++ b/me/iangry/antinetherroof/Main.java
+@@ -122,13 +122,17 @@ public class Main extends JavaPlugin implements Listener {
+ 
+                   if (this.getConfig().getBoolean("enable-command-on-entry")) {
+                      for (String cm : this.getConfig().getStringList("command-on-entry")) {
+-                        String replaced1 = cm.replace("&", "§").replace("%player%", p.getName());
+-                        if (this.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+-                           replaced1 = PlaceholderAPI.setPlaceholders(p.getPlayer(), replaced1);
+-                           Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaced1);
+-                        } else {
+-                           Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaced1);
+-                        }
++                        // Luma start - Folia support
++                        Bukkit.getGlobalRegionScheduler().run(this, task -> {
++                           String replaced1 = cm.replace("&", "§").replace("%player%", p.getName());
++                           if (this.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
++                              replaced1 = PlaceholderAPI.setPlaceholders(p.getPlayer(), replaced1);
++                              Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaced1);
++                           } else {
++                              Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), replaced1);
++                           }
++                        });
++                        // Luma end - Folia support
+                      }
+                   }
+                }
+@@ -251,7 +255,7 @@ public class Main extends JavaPlugin implements Listener {
+          } else {
+             location.getChunk().load();
+             if (location.getChunk().isLoaded()) {
+-               player.teleport(location.add(0.5, 1.0, 0.5));
++               player.teleportAsync(location.add(0.5, 1.0, 0.5)); // Luma - Folia support
+             }
+          }
+       } else {
