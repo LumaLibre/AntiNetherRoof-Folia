@@ -6,7 +6,7 @@ index 5cd36a8..4609d1d 100644
  api-version: 1.13
  description: Block the nether roof
  softdepend: [PlaceholderAPI]
-+folia-support: true # Luma - Folia support
++folia-supported: true # Luma - Folia support
  commands:
    antinetherroof: # Luma - Useless code
      description: Help Command
